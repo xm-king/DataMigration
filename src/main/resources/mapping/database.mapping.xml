@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.diantu.dao.DataBaseMapper">
+
+	<insert id="saveDataBaseModel" parameterType="com.diantu.model.DataBaseModel">
+		INSERT INTO migration_database
+		(name,type,userName,passWord,connectionUrl)
+		VALUES
+		(#{name},#{type},#{userName},#{passWord},#{connectionUrl});	
+	</insert>
+</mapper>
