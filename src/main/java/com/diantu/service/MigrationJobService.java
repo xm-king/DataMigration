@@ -17,7 +17,9 @@ public class MigrationJobService {
 	public void saveJob(MigrationJobModel jobModel){
 		migrationJobMapper.saveJob(jobModel);
 	}
-	
+	public void updateJob(MigrationJobModel jobModel){
+		migrationJobMapper.updateJob(jobModel);
+	}
 	public List<MigrationJobModel> listJobs(){
 		return migrationJobMapper.listJobs();
 	}

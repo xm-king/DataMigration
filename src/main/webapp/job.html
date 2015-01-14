@@ -27,12 +27,17 @@
 	</script>
 </head>
 <body>
-	<form action="v1/job/invoke/add" method="POST">
-		定时任务名字:<input type="text" name="name" value="test"/><br>
-		<input type="hidden" name="group" value="work" /><br>
-		定时任务调度:<input type="text" name="cron" value="0/5 * * * * ?"/><br>
-		定时任务描述:<input type="text" name="description" value="hh"/><br>
-		<input type="button" value="提交"> 
+	<form action="v1/database/invoke" method="POST">
+		DataBase Type:
+		<select name="type">
+			<option value="mysql">mysql</option>
+			<option value="oracle">oracle</option>
+		</select><br>
+		数据库连接命名:<input type="text" name="name" value="测试"/><br>
+		数据库连接用户名:<input type="text" name="userName" value="root"/><br>
+		数据库连接密码:<input type="text" name="passWord" value=""/><br>
+		数据库连接地址:<input type="text" name="connectionUrl" value="jdbc:mysql://127.0.0.1:3306/dataMigration"/><br>
+		<input type="button" id="checkConnection" value="测试连接">  <input type="submit" value="提交"> 
 	</form>
 </body>
 </html>
