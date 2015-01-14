@@ -9,4 +9,22 @@
 		VALUES
 		(#{name},#{type},#{userName},#{passWord},#{connectionUrl});	
 	</insert>
+	
+	<select id="getDataBaseModel" parameterType="int" resultType="com.diantu.model.DataBaseModel">
+		SELECT  id,name,type,userName,passWord,connectionUrl
+		FROM migration_database
+		WHERE id = #{id}
+	</select>
+	
+	<update id="updateDataBaseModel" parameterType="com.diantu.model.DataBaseModel">
+		UPDATE migration_database
+		SET name=#{name},type=#{type},userName=#{userName},passWord=#{passWord},connectionUrl=#{connectionUrl}
+		WHERE id=#{id}
+	</update>
+	
+	<select id="listDataBases" resultType="com.diantu.model.DataBaseModel">
+		SELECT  id,name,type,userName,passWord,connectionUrl
+		FROM migration_database
+	</select>
+	
 </mapper>

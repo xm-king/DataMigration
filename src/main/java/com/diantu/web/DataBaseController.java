@@ -1,6 +1,8 @@
 package com.diantu.web;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,12 +15,21 @@ import com.diantu.service.DataBaseService;
 import com.diantu.util.DBUtils;
 
 @Controller
+@RequestMapping(value="/v1/database")
 public class DataBaseController {
 
 	@Autowired
 	private DataBaseService dataBaseService;
 	
-	@RequestMapping(value = "/v1/database/check", method = RequestMethod.POST)
+	/**
+	 * 查询数据库连接是否正常
+	 * @param type
+	 * @param userName
+	 * @param passWord
+	 * @param connectionUrl
+	 * @return TRUE if DB connection is OK
+	 */
+	@RequestMapping(value = "/check", method = RequestMethod.POST)
 	@ResponseBody
 	public String checkDataBase(@RequestParam("type") String type,
 			@RequestParam("userName") String userName, 
@@ -30,7 +41,16 @@ public class DataBaseController {
 			return "FAILED";
 	}
 	
-	@RequestMapping(value = "/v1/database/invoke", method = RequestMethod.POST)
+	/**
+	 * 保存数据库连接信息到数据库
+	 * @param type
+	 * @param name
+	 * @param userName
+	 * @param passWord
+	 * @param connectionUrl
+	 * @return TRUE if save success
+	 */
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	@ResponseBody
 	public String saveDataBase(@RequestParam("type") String type,
 			@RequestParam("name") String name,
@@ -45,6 +65,16 @@ public class DataBaseController {
 		model.setPassWord(passWord);
 		model.setConnectionUrl(connectionUrl);
 		dataBaseService.saveDataBase(model);
+		return "SUCCESS";
+	}
+	/**
+	 * 查询出所有的数据库连接
+	 * @return
+	 */
+	@RequestMapping(value="/list",method=RequestMethod.GET)
+	@ResponseBody
+	public String listAllConnections(){
+		List<DataBaseModel> dataBases = dataBaseService.listDataBases();
 		return "SUCCESS";
 	}
 }

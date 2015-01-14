@@ -1,5 +1,7 @@
 package com.diantu.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,5 +16,9 @@ public class DataBaseService {
 	
 	public void saveDataBase(DataBaseModel model){
 		dataBaseMapper.saveDataBaseModel(model);
+	}
+	
+	public List<DataBaseModel> listDataBases(){
+		return dataBaseMapper.listDataBases();
 	}
 }

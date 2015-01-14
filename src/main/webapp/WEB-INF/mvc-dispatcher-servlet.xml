@@ -15,6 +15,9 @@
 	<!-- JDBC配置文件 -->
 	<import resource="classpath*:jdbc-context.xml" />
 	
+	<!-- 定时任务配置文件 -->
+	<import resource="classpath*:quartz-context.xml"/>
+	
 	<!-- 访问静态资源配置 -->
 	<mvc:default-servlet-handler/>  
     <!-- Enable annotation-based controllers using @Controller annotations -->

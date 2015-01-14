@@ -7,7 +7,7 @@
 	<packaging>war</packaging>
 
 	<properties>
-		<spring.version>3.2.2.RELEASE</spring.version>
+		<spring.version>3.2.8.RELEASE</spring.version>
 	</properties>
 
 	<dependencies>
@@ -38,6 +38,12 @@
 			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<!-- -->
+		<dependency>
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>
 			<version>1.4</version>
@@ -52,7 +58,7 @@
 			<artifactId>mybatis</artifactId>
 			<version>3.2.2</version>
 		</dependency>
-		
+
 		<!-- JDBC Driver -->
 		<dependency>
 			<groupId>mysql</groupId>
@@ -64,7 +70,7 @@
 			<artifactId>ojdbc14</artifactId>
 			<version>10.2.0.4.0</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>net.sf.json-lib</groupId>
 			<artifactId>json-lib</artifactId>
@@ -93,6 +99,11 @@
 			<groupId>cglib</groupId>
 			<artifactId>cglib</artifactId>
 			<version>3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
+			<version>2.2.1</version>
 		</dependency>
 	</dependencies>
 	<build>
