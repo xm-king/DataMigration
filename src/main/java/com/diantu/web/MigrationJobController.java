@@ -72,9 +72,8 @@ public class MigrationJobController {
 	 * @return
 	 */
 	@RequestMapping(value = "/get", method = RequestMethod.GET)
-	@ResponseBody
 	public String getJob(@RequestParam("id") int id) {
-		return "SUCCESS";
+		return "index";
 	}
 
 	/**

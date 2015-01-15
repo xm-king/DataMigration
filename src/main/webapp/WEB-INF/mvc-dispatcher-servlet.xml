@@ -16,11 +16,12 @@
 	<import resource="classpath*:jdbc-context.xml" />
 	
 	<!-- 定时任务配置文件 -->
-	<import resource="classpath*:quartz-context.xml"/>
+	<import resource="classpath*:others-context.xml"/>
 	
 	<!-- 访问静态资源配置 -->
 	<mvc:default-servlet-handler/>  
     <!-- Enable annotation-based controllers using @Controller annotations -->
+    
     <bean id="annotationUrlMapping" class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
         <property name="order" value="0" />
     </bean>
@@ -28,5 +29,4 @@
         <property name="order" value="1" />
     </bean>
     <bean id="annotationMethodHandlerAdapter" class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"/>
-
 </beans>

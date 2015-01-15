@@ -106,6 +106,7 @@
 			<version>2.2.1</version>
 		</dependency>
 
+		<!-- JSON lib -->
 		<dependency>
 			<groupId>net.sf.json-lib</groupId>
 			<artifactId>json-lib</artifactId>
@@ -113,6 +114,12 @@
 			<classifier>jdk15</classifier>
 		</dependency>
 		
+        <!--velocity-->  
+        <dependency>  
+            <groupId>velocity</groupId>  
+            <artifactId>velocity</artifactId>  
+            <version>1.5</version>  
+        </dependency>
 	</dependencies>
 	<build>
 		<finalName>DataMigration</finalName>
