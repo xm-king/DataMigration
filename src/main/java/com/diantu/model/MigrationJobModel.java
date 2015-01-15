@@ -2,28 +2,29 @@ package com.diantu.model;
 
 public class MigrationJobModel {
 	private int id;
-	private String name;
-	private String group;
+	private String jobName;
+	private String jobGroup;
 	private String status;
 	private String cron;
 	private String description;
+	
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
+	public String getJobName() {
+		return jobName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setJobName(String jobName) {
+		this.jobName = jobName;
 	}
-	public String getGroup() {
-		return group;
+	public String getJobGroup() {
+		return jobGroup;
 	}
-	public void setGroup(String group) {
-		this.group = group;
+	public void setJobGroup(String jobGroup) {
+		this.jobGroup = jobGroup;
 	}
 	public String getStatus() {
 		return status;
@@ -43,6 +44,5 @@ public class MigrationJobModel {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
 	
 }

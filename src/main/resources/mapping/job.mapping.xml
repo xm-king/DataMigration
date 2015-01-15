@@ -5,25 +5,25 @@
 
 	<insert id="saveJob" parameterType="com.diantu.model.MigrationJobModel">
 		INSERT INTO migration_job
-		(name,group,status,cron,description)
+		(jobName,jobGroup,status,cron,description)
 		VALUES
-		(#{name},#{group},#{status},#{cron},#{description});	
+		(#{jobName},#{jobGroup},#{status},#{cron},#{description});	
 	</insert>
 	
 	<update id="updateJob" parameterType="com.diantu.model.MigrationJobModel">
 		UPDATE migration_job
-		SET name=#{name},group=#{group},status=#{status},cron=#{cron},description=#{description}
+		SET name=#{jobName},jobGroup=#{jobGroup},status=#{status},cron=#{cron},description=#{description}
 		WHERE id=#{id}
 	</update>
 	
 	<select id="getJob" parameterType="int" resultType="com.diantu.model.MigrationJobModel">
-		SELECT id,name,group,status,cron,description
+		SELECT id,jobName,jobGroup,status,cron,description
 		FROM migration_job
 		WHERE id = #{id}
 	</select>
 	
 	<select id="listJobs" resultType="com.diantu.model.MigrationJobModel">
-		SELECT id,name,group,status,cron,description
+		SELECT id,jobName ,jobGroup,status,cron,description
 		FROM migration_job
 	</select>
 	

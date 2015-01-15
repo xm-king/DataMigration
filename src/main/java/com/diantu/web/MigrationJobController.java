@@ -21,9 +21,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.diantu.dao.DataBaseMapper;
 import com.diantu.model.MigrationJobModel;
 import com.diantu.service.DataMigrationJob;
 import com.diantu.service.MigrationJobService;
+import static com.diantu.util.Constants.*;
 
 @Controller
 @RequestMapping(value = "/v1/job/invoke")
@@ -33,6 +35,8 @@ public class MigrationJobController {
 
 	@Autowired
 	private SchedulerFactoryBean schedulerFactoryBean;
+	@Autowired
+	private DataBaseMapper dataBaseMapper;
 	@Autowired
 	private MigrationJobService migrationJobService;
 
@@ -49,8 +53,8 @@ public class MigrationJobController {
 	@ResponseBody
 	public String saveJob(@RequestParam("name") String name, @RequestParam("group") String group, @RequestParam("cron") String cron, @RequestParam("description") String description) {
 		MigrationJobModel job = new MigrationJobModel();
-		job.setName(name);
-		job.setGroup(group);
+		job.setJobName(name);
+		job.setJobGroup(group);
 		job.setCron(cron);
 		job.setDescription(description);
 		if (createOrUpdateCronJob(job)) {
@@ -88,8 +92,8 @@ public class MigrationJobController {
 			@RequestParam("description") String description) {
 		MigrationJobModel job = new MigrationJobModel();
 		job.setId(id);
-		job.setName(name);
-		job.setGroup(group);
+		job.setJobName(name);
+		job.setJobGroup(group);
 		job.setCron(cron);
 		job.setDescription(description);
 		if (createOrUpdateCronJob(job)) {
@@ -143,18 +147,20 @@ public class MigrationJobController {
 			// 获取调度器
 			Scheduler scheduler = schedulerFactoryBean.getScheduler();
 			// 获取触发器Key
-			TriggerKey triggerKey = TriggerKey.triggerKey(job.getName(), job.getGroup());
+			TriggerKey triggerKey = TriggerKey.triggerKey(job.getJobName(), job.getJobGroup());
 			// 获取触发器
 			CronTrigger trigger = (CronTrigger) scheduler.getTrigger(triggerKey);
 			// 新创建任务
 			if (null == trigger) {
 				// 创建任务
-				JobDetail jobDetail = JobBuilder.newJob(DataMigrationJob.class).withIdentity(job.getName(), job.getGroup()).build();
-				jobDetail.getJobDataMap().put("sheculeJob", job);
+				JobDetail jobDetail = JobBuilder.newJob(DataMigrationJob.class).withIdentity(job.getJobName(), job.getJobGroup()).build();
+				//任务详情
+				jobDetail.getJobDataMap().put(SCHEDULE_JOB, job);
+				jobDetail.getJobDataMap().put(DATABASE_MAPPER,dataBaseMapper);
 				// 表达式调度
 				CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule(job.getCron());
 				// 创建一个新的Trigger
-				trigger = TriggerBuilder.newTrigger().withIdentity(job.getName(), job.getGroup()).withSchedule(scheduleBuilder).build();
+				trigger = TriggerBuilder.newTrigger().withIdentity(job.getJobName(), job.getJobGroup()).withSchedule(scheduleBuilder).build();
 				scheduler.scheduleJob(jobDetail, trigger);
 				return true;
 			} else {
