@@ -16,7 +16,7 @@
 	<!-- Velocity配置信息 -->
 	<bean id="velocityConfigurer"
 		class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
-		<property name="resourceLoaderPath" value="WEB-INF/velocity" />
+		<property name="resourceLoaderPath" value="/" />
 		<property name="velocityProperties">
 			<props>
 				<prop key="input.encoding">utf-8</prop>
@@ -24,11 +24,13 @@
 			</props>
 		</property>
 	</bean>
+	
 	<!-- Velocity视图 -->
 	<bean id="velocityViewResolver"
 		class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
 		<property name="prefix" value="/"></property>
-		<property name="suffix" value=".vm" />
+		<property name="suffix" value=".html" />
 		<property name="contentType" value="text/html;charset=utf-8" />
 	</bean>
+	
 </beans>
