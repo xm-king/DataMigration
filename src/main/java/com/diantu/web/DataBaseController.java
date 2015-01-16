@@ -14,7 +14,7 @@ import com.diantu.service.DataBaseService;
 import com.diantu.util.DBUtils;
 
 @Controller
-@RequestMapping(value = "/v1/database")
+@RequestMapping(value = "/v1/database/invoke")
 public class DataBaseController {
 
 	@Autowired
@@ -50,7 +50,6 @@ public class DataBaseController {
 	 * @return TRUE if save success
 	 */
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	@ResponseBody
 	public String saveDataBase(@RequestParam("type") String type, @RequestParam("name") String name, @RequestParam("userName") String userName, @RequestParam("passWord") String passWord,
 			@RequestParam("connectionUrl") String connectionUrl) {
 
@@ -61,7 +60,7 @@ public class DataBaseController {
 		model.setPassWord(passWord);
 		model.setConnectionUrl(connectionUrl);
 		dataBaseService.saveDataBase(model);
-		return "SUCCESS";
+		return "redirect:/databases.html";
 	}
 
 	/**

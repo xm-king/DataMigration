@@ -6,12 +6,14 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.diantu.util.Constants.*;
+
 public class DBUtils {
 	public static Map<String,String> DBDrivers = new HashMap<String,String>();
 	
 	static{
-		DBDrivers.put("oracle","oracle.jdbc.driver.OracleDriver");
-		DBDrivers.put("mysql","com.mysql.jdbc.Driver");
+		DBDrivers.put(DB_TYPE_MYSQL,DB_DRIVER_MYSQL);
+		DBDrivers.put(DB_TYPE_ORACLE,DB_DRIVER_ORACLE);
 	}
 	
 	public static boolean checkConnection(String type,String userName,String passWord,String connectionUrl){
