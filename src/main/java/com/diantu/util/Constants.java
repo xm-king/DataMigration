@@ -5,6 +5,9 @@ import java.util.List;
 
 public class Constants {
 	
+	public static final String RESULT_SUCESS = "SUCCESS";
+	public static final String RESULT_FAILED = "FAILED";
+	
 	public static final String JOB_PREPARATION = "preparation";
 	public static final String JOB_SELECT = "select";
 	public static final String JOB_UPDATE = "update";

@@ -1,6 +1,5 @@
 package com.diantu.web;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.diantu.model.DataBaseModel;
 import com.diantu.service.DataBaseService;
 import com.diantu.util.DBUtils;
+
 
 @Controller
 @RequestMapping(value = "/v1/database/invoke")
@@ -62,16 +62,39 @@ public class DataBaseController {
 		dataBaseService.saveDataBase(model);
 		return "redirect:/databases.html";
 	}
-
+	
 	/**
-	 * 查询出所有的数据库连接
-	 * 
+	 * 更新数据库对象信息
+	 * @param type
+	 * @param name
+	 * @param userName
+	 * @param passWord
+	 * @param connectionUrl
 	 * @return
 	 */
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	@ResponseBody
-	public String listAllConnections() {
-		List<DataBaseModel> dataBases = dataBaseService.listDataBases();
-		return "SUCCESS";
+	@RequestMapping(value="/update",method=RequestMethod.POST)
+	public String updateDataBase(@RequestParam("id") int id,@RequestParam("type") String type, @RequestParam("name") String name, @RequestParam("userName") String userName, @RequestParam("passWord") String passWord,
+			@RequestParam("connectionUrl") String connectionUrl){
+		DataBaseModel model = new DataBaseModel();
+		model.setId(id);
+		model.setType(type);
+		model.setName(name);
+		model.setUserName(userName);
+		model.setPassWord(passWord);
+		model.setConnectionUrl(connectionUrl);
+		dataBaseService.updateDataBase(model);
+		return "redirect:/databases.html";
 	}
+	
+	/**
+	 * 删除数据库连接
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value="/delete",method=RequestMethod.GET)
+	public String deleteDataBase(@RequestParam("id") int id){
+		dataBaseService.deleteDataBase(id);
+		return "redirect:/databases.html";
+	}
+	
 }

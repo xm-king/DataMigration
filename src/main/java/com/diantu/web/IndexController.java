@@ -7,9 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.diantu.model.DataBaseModel;
 import com.diantu.service.DataBaseService;
+
 import static com.diantu.util.Constants.*;
 
 @Controller
@@ -49,5 +51,20 @@ public class IndexController {
 		//数据库类型
 		model.addAttribute("dbTypes", DB_TYPES);
 		return "insert";
+	}
+
+	/**
+	 * 更新数据库连接
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value="update.html",method=RequestMethod.GET)
+	public String updateDB(@RequestParam("id") int id,ModelMap model){
+		//数据库对象
+		DataBaseModel dbModel = dataBaseService.getDataBase(id);
+		model.addAttribute("model",dbModel);
+		//数据库类型
+		model.addAttribute("dbTypes", DB_TYPES);
+		return "update";
 	}
 }

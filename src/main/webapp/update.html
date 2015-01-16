@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>后台管理</title>
+<link rel="stylesheet" type="text/css" href="css/common.css" />
+<link rel="stylesheet" type="text/css" href="css/main.css" />
+<script type="text/javascript" src="js/libs/modernizr.min.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('#checkbtn').click(function(){
+			var form = this.form;
+		 	var data = {
+				type:form.type.value,
+				name:form.name.value,
+				userName:form.userName.value,
+				passWord:form.passWord.value,
+				connectionUrl:form.connectionUrl.value
+			};
+		 	jQuery.ajax({
+				type:"POST",
+				url:"v1/database/invoke/check",
+				data:data,
+				success:function(msg){
+					if(msg == "SUCCESS"){
+						alert("连接成功");
+					}else{
+						alert("连接失败");
+					}
+				}
+			});
+		});
+	});
+</script>
+</head>
+<body>
+	<div class="topbar-wrap white">
+		<div class="topbar-inner clearfix">
+			<div class="topbar-logo-wrap clearfix">
+				<h1 class="topbar-logo none">
+					<a href="index.html" class="navbar-brand">后台管理</a>
+				</h1>
+				<ul class="navbar-list clearfix">
+					<li><a class="on" href="index.html">首页</a></li>
+					<li><a href="#" target="_blank">网站首页</a></li>
+				</ul>
+			</div>
+			<div class="top-info-wrap">
+				<ul class="top-info-list clearfix">
+					<li><a href="http://www.jscss.me">管理员</a></li>
+					<li><a href="http://www.jscss.me">修改密码</a></li>
+					<li><a href="http://www.jscss.me">退出</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="container clearfix">
+		#include("_left.html")
+		<div class="main-wrap">
+
+			<div class="crumb-wrap">
+				<div class="crumb-list">
+					<i class="icon-font"></i><a href="#">首页</a><span
+						class="crumb-step">&gt;</span><a class="crumb-name"
+						href="#">连接管理</a><span class="crumb-step">&gt;</span><span>修改连接</span>
+				</div>
+			</div>
+			<div class="result-wrap">
+				<div class="result-content">
+					<form action="v1/database/invoke/update" method="post">
+						<table class="insert-tab" width="100%">
+							<tbody>
+								<tr>
+									<th width="120"><i class="require-red">*</i>分类：</th>
+									<td><select name="type" id="catid" class="required">
+											<option value="">请选择</option>
+											 #foreach($type in $dbTypes)
+												<option value="$type" #if($type == $model.type)selected="true"#end>$type</option> 
+											#end
+									</select></td>
+								</tr>
+								<tr>
+									<th><i class="require-red">*</i>连接名称：</th>
+									<td><input class="common-text" id="title"
+										name="name" size="50" type="text" value="$model.name"></td>
+								</tr>
+								<tr>
+									<th>用户名：</th>
+									<td><input class="common-text" name="userName" size="50"
+										type="text" value="$model.userName"></td>
+								</tr>
+								<tr>
+									<th>密码：</th>
+									<td><input class="common-text" name="passWord" size="50"
+										type="text" value="$model.passWord"></td>
+								</tr>
+								<tr>
+									<th>连接URL：</th>
+									<td><input class="common-text" name="connectionUrl"
+										size="50" type="text" value="$model.connectionUrl"></td>
+								</tr>
+								
+								<tr>
+									<th></th>
+									<td>
+										<input hidden="true" value="$model.id" name="id"/>
+										<input class="btn btn-primary btn6 mr10" value="提交" type="submit"> 
+										<input class="btn btn6" id="checkbtn" value="测试连接" type="button">
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</form>
+				</div>
+			</div>
+
+		</div>
+		<!--/main-->
+	</div>
+</body>
+</html>

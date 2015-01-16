@@ -18,6 +18,18 @@ public class DataBaseService {
 		dataBaseMapper.saveDataBaseModel(model);
 	}
 	
+	public DataBaseModel getDataBase(int id){
+		return dataBaseMapper.getDataBaseModel(id);
+	}
+	
+	public void updateDataBase(DataBaseModel dbModel){
+		dataBaseMapper.updateDataBaseModel(dbModel);
+	}
+	
+	public void deleteDataBase(int id){
+		dataBaseMapper.deleteDataBaseModel(id);
+	}
+	
 	public List<DataBaseModel> listDataBases(){
 		return dataBaseMapper.listDataBases();
 	}

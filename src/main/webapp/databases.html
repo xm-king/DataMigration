@@ -80,20 +80,20 @@
                         #foreach($model in $list)
                         <tr>
                             <td class="tc"><input name="id[]" value="59" type="checkbox"></td>
-                            <td>59</td>
+                            <td>$model.id</td>
                             <td title="发哥经典"><a target="_blank" href="#" title="发哥经典">$model.name</a></td>
                             <td>$model.type</td>
                             <td>$model.userName</td>
                             <td>$model.passWord</td>
                             <td>$model.connectionUrl</td>
                             <td>
-                                <a class="link-update" href="#">修改</a>
-                                <a class="link-del" href="#">删除</a>
+                                <a class="link-update" href="update.html?id=$model.id">修改</a>
+                                <a class="link-del" href="v1/database/invoke/delete?id=$model.id">删除</a>
                             </td>
                         </tr>
                         #end
                     </table>
-                    <div class="list-page"> 2 条 1/1 页</div>
+                   <!--  <div class="list-page"> 2 条 1/1 页</div> -->
                 </div>
             </form>
         </div>

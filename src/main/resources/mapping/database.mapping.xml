@@ -13,7 +13,7 @@
 	<select id="getDataBaseModel" parameterType="int" resultType="com.diantu.model.DataBaseModel">
 		SELECT  id,name,type,userName,passWord,connectionUrl
 		FROM migration_database
-		WHERE id = #{id}
+		WHERE id = #{id} and status = 0
 	</select>
 	
 	<update id="updateDataBaseModel" parameterType="com.diantu.model.DataBaseModel">
@@ -22,9 +22,16 @@
 		WHERE id=#{id}
 	</update>
 	
+	<update id="deleteDataBaseModel" parameterType="int">
+		UPDATE migration_database
+		SET status = 1
+		WHERE id=#{id}
+	</update>
+	
 	<select id="listDataBases" resultType="com.diantu.model.DataBaseModel">
 		SELECT  id,name,type,userName,passWord,connectionUrl
 		FROM migration_database
+		WHERE status = 0
 	</select>
 	
 </mapper>

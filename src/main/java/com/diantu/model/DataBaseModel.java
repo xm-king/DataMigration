@@ -7,6 +7,8 @@ public class DataBaseModel {
 	private String userName;
 	private String passWord;
 	private String connectionUrl;
+	private int status;
+	
 	public long getId() {
 		return id;
 	}
@@ -43,6 +45,11 @@ public class DataBaseModel {
 	public void setConnectionUrl(String connectionUrl) {
 		this.connectionUrl = connectionUrl;
 	}
-	
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
 	
 }
